@@ -54,6 +54,10 @@ module Authlogic
         end
         
         def persisted?() false end
+
+        def to_key
+          new_record? ? nil : [ self.send(self.class.primary_key) ]
+        end
         
         private
           def build_key(last_part)
